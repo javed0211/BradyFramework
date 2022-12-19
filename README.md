@@ -42,6 +42,8 @@ Framework Details
        - Tests related to calculations of Price, change% etc
        - Tests related to calcuate performances (3m,6m,12m)
        - Tests related to API which provides these data to current screen
+       - User registration journey
+       - Notifications / Emails etc
      - Non Functional Test
        - compatibility test - cross browser
        - Performance tests - as rates are constanly changing and multiple API calls are made
