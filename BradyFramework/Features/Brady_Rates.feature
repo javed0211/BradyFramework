@@ -1,4 +1,5 @@
-﻿Feature: Brady_Rates
+﻿@UI
+Feature: Brady_Rates
 #Task
 #Automate finding currency exchange rates in https://www.tradingview.com 
 #

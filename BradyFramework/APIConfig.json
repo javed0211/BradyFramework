@@ -1,0 +1,8 @@
+{
+  "BaseURL": "https://dummy.restapiexample.com/",
+  "Header": {
+    "ContentType": "application/x-www-form-urlencoded; charset=UTF-8",
+    "Accept": "application/json"
+  }
+
+}

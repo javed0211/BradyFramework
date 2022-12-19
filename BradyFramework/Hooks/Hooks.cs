@@ -62,7 +62,7 @@ namespace Hooks
                                 });
         }
 
-        [AfterScenario]
+        [AfterScenario("UI")]
         public async Task CloseContext()
         {
             await (await BasePage._page).CloseAsync();

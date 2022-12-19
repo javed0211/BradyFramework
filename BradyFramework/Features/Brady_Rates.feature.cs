@@ -27,7 +27,8 @@ namespace BradyFramework.Features
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "UI"};
         
 #line 1 "Brady_Rates.feature"
 #line hidden
@@ -105,7 +106,7 @@ namespace BradyFramework.Features
             argumentsOfScenario.Add("region", region);
             argumentsOfScenario.Add("currency", currency);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extract Rates for currencies", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -115,22 +116,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 21
  testRunner.Given("I navigate to TradingView exchange rates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 21
+#line 22
  testRunner.When("I sign in to the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 23
  testRunner.And(string.Format("I choose \'{0}\' tab", region), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 24
  testRunner.And(string.Format("I find last exchange rate for currency pair \'{0}\'", currency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 24
+#line 25
  testRunner.And(string.Format("I find last \'3\' exchange rates for \'{0}\' for a period of \'1\' minute", currency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 25
+#line 26
  testRunner.And("I sign out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -140,6 +141,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extract Rates for currencies: Asia")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Brady_Rates")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UI")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ExtractRates")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ExchangeRates")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Asia")]
@@ -147,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:currency", "GBPJPY")]
         public void ExtractRatesForCurrencies_Asia()
         {
-#line 19
+#line 20
 this.ExtractRatesForCurrencies("Asia", "GBPJPY", ((string[])(null)));
 #line hidden
         }
@@ -155,6 +157,7 @@ this.ExtractRatesForCurrencies("Asia", "GBPJPY", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extract Rates for currencies: All")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Brady_Rates")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UI")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ExtractRates")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ExchangeRates")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "All")]
@@ -162,7 +165,7 @@ this.ExtractRatesForCurrencies("Asia", "GBPJPY", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:currency", "USDJPY")]
         public void ExtractRatesForCurrencies_All()
         {
-#line 19
+#line 20
 this.ExtractRatesForCurrencies("All", "USDJPY", ((string[])(null)));
 #line hidden
         }
@@ -170,6 +173,7 @@ this.ExtractRatesForCurrencies("All", "USDJPY", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extract Rates for currencies: Minor")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Brady_Rates")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UI")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ExtractRates")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ExchangeRates")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Minor")]
@@ -177,7 +181,7 @@ this.ExtractRatesForCurrencies("All", "USDJPY", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:currency", "EURGBP")]
         public void ExtractRatesForCurrencies_Minor()
         {
-#line 19
+#line 20
 this.ExtractRatesForCurrencies("Minor", "EURGBP", ((string[])(null)));
 #line hidden
         }

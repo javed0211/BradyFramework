@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using BradyFramework.APITesting.UsingPlaywright;
+using Microsoft.Playwright;
 using SpecFlowPlaywright;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace PageObjects
         public readonly Task<IBrowserContext> _browserContext;
         private readonly Task<ITracing> _tracing;
         public static Task<IPage> _page;
+        public Task<IPlaywright> _apiContext;
 
         public Task<ITracing> Tracing => _tracing;
 
@@ -17,7 +19,7 @@ namespace PageObjects
             _browserContext = CreateBrowserContextAsync(browserDriver.Current);
             _tracing = _browserContext.ContinueWith(t => t.Result.Tracing);
             _page = CreatePageAsync(_browserContext);
-
+            _apiContext = PlaywrightAPISupport.CreateAPIRequestContext();
         }
 
         private async Task<IBrowserContext> CreateBrowserContextAsync(Task<IBrowser> browser)
