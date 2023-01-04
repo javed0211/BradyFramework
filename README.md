@@ -30,6 +30,8 @@ Framework Details
 | Reporting | Allure |
 | API framework| Playwright, RestSharp|
 
+**NOTE:** Similar framework can be created using selenium, however I chose playwright for its design and to overcome challenges faced in selenium
+
 - Tests are written generic to extract rates for any currency. Currency can be provided through specflow examples
 - code will capture current rate and any changes in exchange rate for configured time. Time can be changed from Tests.
 
@@ -40,6 +42,8 @@ Framework Details
        - Tests related to calculations of Price, change% etc
        - Tests related to calcuate performances (3m,6m,12m)
        - Tests related to API which provides these data to current screen
+       - User registration journey
+       - Notifications / Emails etc
      - Non Functional Test
        - compatibility test - cross browser
        - Performance tests - as rates are constanly changing and multiple API calls are made
