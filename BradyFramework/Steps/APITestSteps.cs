@@ -39,7 +39,7 @@ namespace BradyFramework.Steps
         [Given(@"I call GET employee API '([^']*)'")]
         public void GivenICallGETEmployeeAPI(string endPoint)
         {
-            var data = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\APIConfig.json");
+            var data = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\APIConfig.json");
             var jsonData = System.Text.Json.JsonSerializer.Deserialize<APIConfig>(data);
             var apiClient = new RestSharpAPISupport();
             var response = apiClient.GetAPI(jsonData.BaseURL, endPoint);

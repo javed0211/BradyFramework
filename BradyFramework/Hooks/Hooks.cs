@@ -33,11 +33,11 @@ namespace Hooks
                 try
                 {
                     var fileName = _scenarioContext.ScenarioInfo.Title + DateTime.Now.ToString("yyyyMMddHHmmss") + ".png";
-                    var filePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Screenshots" + fileName;
+                    var filePath = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\Screenshots" + fileName;
                     await TakeScreenshot(filePath);
 
-                    if (!Directory.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Screenshots"))
-                        Directory.CreateDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Screenshots");
+                    if (!Directory.Exists(Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\Screenshots"))
+                        Directory.CreateDirectory(Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\Screenshots");
 
                     AllureLifecycle.Instance.AddAttachment(fileName, "image/png", filePath);
                 }

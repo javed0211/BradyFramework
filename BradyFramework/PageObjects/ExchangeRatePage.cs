@@ -27,7 +27,7 @@ namespace BradyFramework.PageObjects
         private static string txtSearch => "(//input[contains(@class,'s-search-input')])[1]";
         private static string btnUsrName => "//button[contains(@class,'user-menu-button--logged')]";
         private static string btnSignOut => "//button[contains(@data-name,'header-user-menu-sign-out')]";
-        
+
 
 
         public async Task GoTo(string url) => await _interactions.GoToUrl(url);
@@ -40,24 +40,32 @@ namespace BradyFramework.PageObjects
             _ScenarioContext["currency"] = currency.ToUpper();
         }
 
-        public async Task<List<Overview>> GetLastExchangeRate()
+        public async Task<List<Overview>> GetLastExchangeRate(string currency)
         {
             var lstRates = new List<Overview>();
+            var btnLoadMore = "//button[contains(@class,'loadButton')]";
+            var eleCurrency = (await BasePage._page).QuerySelectorAllAsync($"//tr[contains(@class,'listRow')][contains(@data-rowkey,'{currency}')]");
+
         GetRates:
-            var rows = (await BasePage._page).QuerySelectorAllAsync("//tr[contains(@class,'result-row')]//td").WaitAsync(TimeSpan.FromMilliseconds(2000)).Result;
-            if (rows[0].InnerTextAsync().Result.Contains((string)(_ScenarioContext["currency"])))
+            if ((await eleCurrency).Count <= 0)
+            {
+                await ClickUntilFoundAsync(await BasePage._page, btnLoadMore, $"//tr[contains(@class,'listRow')][contains(@data-rowkey,'{currency}')]");
+                eleCurrency = (await BasePage._page).QuerySelectorAllAsync($"//tr[contains(@class,'listRow')][contains(@data-rowkey,'{currency}')]//td");
+            }
+
+            if (((await eleCurrency)[0].InnerTextAsync().Result.Contains((string)(currency))))
             {
                 lstRates.Add(new Overview
                 {
-                    currency = rows[0].InnerTextAsync().Result,
+                    currency = (await eleCurrency)[0].InnerTextAsync().Result,
                     source = (string)_ScenarioContext["tabName"],
-                    price = rows[1].InnerTextAsync().Result,
-                    chgPer = rows[2].InnerTextAsync().Result,
-                    chg = rows[3].InnerTextAsync().Result,
-                    Bid = rows[4].InnerTextAsync().Result,
-                    Ask = rows[5].InnerTextAsync().Result,
-                    high = rows[6].InnerTextAsync().Result,
-                    low = rows[7].InnerTextAsync().Result,
+                    price = (await eleCurrency)[1].InnerTextAsync().Result,
+                    chgPer = (await eleCurrency)[2].InnerTextAsync().Result,
+                    chg = (await eleCurrency)[3].InnerTextAsync().Result,
+                    Bid = (await eleCurrency)[4].InnerTextAsync().Result,
+                    Ask = (await eleCurrency)[5].InnerTextAsync().Result,
+                    high = (await eleCurrency)[6].InnerTextAsync().Result,
+                    low = (await eleCurrency)[7].InnerTextAsync().Result,
                 });
             }
             else
@@ -67,6 +75,34 @@ namespace BradyFramework.PageObjects
             return lstRates;
         }
 
+        private async Task ClickUntilFoundAsync(IPage page, string element, string xelement)
+        {
+            var timeout = DateTime.Now.AddMinutes(2);
+            while (true)
+            {
+                try
+                {
+                    await page.ClickAsync(element);
+                    var ele = page.QuerySelectorAllAsync(xelement);
+                    if ((await ele).Count > 0)
+                    {
+                        break;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Element not found, trying again...");
+                }
+
+                if (DateTime.Now >= timeout)
+                {
+                    break;
+                }
+            }
+        }
+
+
+
         public async Task<List<Overview>> GetLastExchangeRate(int time, string currency)
         {
             var lstRates = new List<Overview>();
@@ -75,7 +111,7 @@ namespace BradyFramework.PageObjects
             for (int i = 0; i < TimeSpan.FromMinutes(time).TotalMilliseconds; i++)
             {
             GetRates:
-                var rows = (await BasePage._page).QuerySelectorAllAsync("//tr[contains(@class,'result-row')]//td").WaitAsync(TimeSpan.FromMilliseconds(2000)).Result;
+                var rows = (await BasePage._page).QuerySelectorAllAsync($"//tr[contains(@class,'listRow')][contains(@data-rowkey,'{currency}')]//td").Result;
                 if (rows[0].InnerTextAsync().Result.Contains(currency))
                 {
                     lstRates.Add(new Overview
@@ -95,7 +131,7 @@ namespace BradyFramework.PageObjects
                         stopwatch.Stop();
                         break;
                     }
-                    await SearchCurrency((string)(_ScenarioContext["currency"]));
+                    //await SearchCurrency((currency));
                 }
                 else
                 {

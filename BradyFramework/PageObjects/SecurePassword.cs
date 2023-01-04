@@ -39,7 +39,9 @@ namespace BradyFramework.PageObjects
                                                                         Global.bytePerm4
                                                                     });
             MemoryStream memoryStream= new MemoryStream();
+#pragma warning disable SYSLIB0021 // Type or member is obsolete
             Aes aes = new AesManaged();
+#pragma warning restore SYSLIB0021 // Type or member is obsolete
             aes.Key = passBytes.GetBytes(aes.KeySize / 8);
             aes.IV = passBytes.GetBytes(aes.BlockSize / 8);
 
@@ -61,7 +63,9 @@ namespace BradyFramework.PageObjects
                                                                         Global.bytePerm4
                                                                     });
             MemoryStream memoryStream = new MemoryStream();
+#pragma warning disable SYSLIB0021 // Type or member is obsolete
             Aes aes = new AesManaged();
+#pragma warning restore SYSLIB0021 // Type or member is obsolete
             aes.Key = passBytes.GetBytes(aes.KeySize / 8);
             aes.IV = passBytes.GetBytes(aes.BlockSize / 8);
 

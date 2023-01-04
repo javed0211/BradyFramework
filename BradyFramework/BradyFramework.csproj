@@ -43,7 +43,7 @@
     </None>
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </None> 
   </ItemGroup>
 
 </Project>

@@ -41,9 +41,9 @@ namespace BradyFramework.Steps
         [When(@"I find last exchange rate for currency pair '([^']*)'")]
         public async Task WhenIFindLastExchangeRateForCurrencyPair(string currency)
         {
-            string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Results";
-            await _exchangeRatePage.SearchCurrency(currency);
-            var rates = await _exchangeRatePage.GetLastExchangeRate();
+            string dir = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\Results";
+            //await _exchangeRatePage.SearchCurrency(currency);
+            var rates = await _exchangeRatePage.GetLastExchangeRate(currency);
             using (var rate = new ChoCSVWriter<Overview>(Path.Combine(dir, $"Rates-{(string)_scenarioContext["tabName"]}.csv")).WithFirstLineHeader())
             { rate.Write(rates); }
         }
@@ -51,8 +51,8 @@ namespace BradyFramework.Steps
         [When(@"I find last '([^']*)' exchange rates for '([^']*)' for a period of '([^']*)' minute")]
         public async Task WhenIFindLastExchangeRatesForForAPeriodOfMinute(string noOfInstance, string currency, int time)
         {
-            string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Results";
-            await _exchangeRatePage.SearchCurrency(currency);
+            string dir = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\Results";
+            //await _exchangeRatePage.SearchCurrency(currency);
             var rates = await _exchangeRatePage.GetLastExchangeRate(time,currency);
             using (var rate = new ChoCSVWriter<Overview>(Path.Combine(dir, $"Rates-{(string)_scenarioContext["tabName"]}-1min.csv")).WithFirstLineHeader())
             { rate.Write(rates); }

@@ -15,7 +15,7 @@ namespace BradyFramework.APITesting.UsingRestSharp
 
         public RestResponse PostAPI(string serviceURI, string accesstoken, string urlSuffix, object data)
         {
-            using (WebClient wc = new WebClient())
+            using (HttpClient wc = new HttpClient())
             {
                 var restClient = new RestClient(serviceURI);
                 var restRequest = new RestRequest(urlSuffix, Method.Post);
@@ -27,7 +27,7 @@ namespace BradyFramework.APITesting.UsingRestSharp
         }
         public RestResponse PostAPI(string serviceURI, string urlSuffix, object data)
         {
-            using (WebClient wc = new WebClient())
+            using (HttpClient wc = new HttpClient())
             {
                 var restClient = new RestClient(serviceURI);
                 var restRequest = new RestRequest(urlSuffix, Method.Post);
@@ -44,7 +44,7 @@ namespace BradyFramework.APITesting.UsingRestSharp
 
         public RestResponse GetAPI(string serviceURI, string urlSuffix)
         {
-            using (WebClient wc = new WebClient())
+            using (HttpClient wc = new HttpClient())
             {
                 var restClient = new RestClient(serviceURI);
                 var restRequest = new RestRequest(urlSuffix);
@@ -56,7 +56,7 @@ namespace BradyFramework.APITesting.UsingRestSharp
 
         public RestResponse GetAPI(string serviceURI, string accesstoken, string urlSuffix)
         {
-            using (WebClient wc = new WebClient())
+            using (HttpClient wc = new HttpClient())
             {
                 var restClient = new RestClient(serviceURI);
                 var restRequest = new RestRequest(urlSuffix, Method.Get);
